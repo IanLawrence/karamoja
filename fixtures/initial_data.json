@@ -1,0 +1,667 @@
+[
+  {
+    "model": "Karamoja.Districts",
+    "pk": 1,
+    "fields": {
+      "district_id": 100,
+      "name": "MOROTO",
+      "code": "MOR"
+    }
+  },
+  {
+    "model": "Karamoja.Districts",
+    "pk": 2,
+    "fields": {
+      "district_id": 200,
+      "name": "NAPAK",
+      "code": "NAP"
+    }
+  },
+  {
+    "model": "Karamoja.Districts",
+    "pk": 3,
+    "fields": {
+      "district_id": 300,
+      "name": "ABIM",
+      "code": "ABI"
+    }
+  },
+  {
+    "model": "Karamoja.Districts",
+    "pk": 4,
+    "fields": {
+      "district_id": 400,
+      "name": "KOTIDO",
+      "code": "KOT"
+    }
+  },
+  {
+    "model": "Karamoja.Districts",
+    "pk": 5,
+    "fields": {
+      "district_id": 500,
+      "name": "KAABONG",
+      "code": "KAA"
+    }
+  },
+  {
+    "model": "Karamoja.Districts",
+    "pk": 6,
+    "fields": {
+      "district_id": 600,
+      "name": "NAKAPIRIPIRIT",
+      "code": "NAK"
+    }
+  },
+  {
+    "model": "Karamoja.Districts",
+    "pk": 7,
+    "fields": {
+      "district_id": 700,
+      "name": "AMUDAT",
+      "code": "AMU"
+    }
+  },
+  {
+    "model": "Karamoja.Sectors",
+    "pk": 1,
+    "fields": {
+      "description": "Livestock"
+    }
+  },
+  {
+    "model": "Karamoja.Sectors",
+    "pk": 2,
+    "fields": {
+      "description": "Crops"
+    }
+  },
+  {
+    "model": "Karamoja.Sectors",
+    "pk": 3,
+    "fields": {
+      "description": "Water"
+    }
+  },
+  {
+    "model": "Karamoja.Sectors",
+    "pk": 4,
+    "fields": {
+      "description": "Livelihoods"
+    }
+  },
+  {
+    "model": "Karamoja.RiskOfDrought",
+    "pk": 1,
+    "fields": {
+      "description": "Low",
+      "risk_of_drought_id" : 1
+    }
+  },
+  {
+    "model": "Karamoja.RiskOfDrought",
+    "pk": 2,
+    "fields": {
+      "description": "Medium",
+      "risk_of_drought_id" : 2
+    }
+  },
+  {
+    "model": "Karamoja.RiskOfDrought",
+    "pk": 3,
+    "fields": {
+      "description": "High",
+      "risk_of_drought_id" : 3
+    }
+  },
+  {
+    "model": "Karamoja.RiskOfDrought",
+    "pk": 4,
+    "fields": {
+      "description": "Not specified",
+      "risk_of_drought_id" : 0
+    }
+  },
+  {
+    "model": "Karamoja.Trends",
+    "pk": 1,
+    "fields": {
+      "description": "Not specified",
+      "trends_id" : 0
+    }
+  },
+  {
+    "model": "Karamoja.Trends",
+    "pk": 2,
+    "fields": {
+      "description": "Stable",
+      "trends_id" : 1
+    }
+  },
+  {
+    "model": "Karamoja.Trends",
+    "pk": 3,
+    "fields": {
+      "description": "Improving",
+      "trends_id" : 2
+    }
+  },
+  {
+    "model": "Karamoja.Trends",
+    "pk": 4,
+    "fields": {
+      "description": "Worsening",
+      "trends_id" : 3
+    }
+  },
+   {
+    "model": "Karamoja.Phase",
+    "pk": 1,
+    "fields": {
+      "description": "Normal",
+      "phase_id" :  1 
+    }
+  },
+   {
+    "model": "Karamoja.Phase",
+    "pk": 2,
+    "fields": {
+      "description": "Alert",
+      "phase_id" :  2
+    }
+  },
+   {
+    "model": "Karamoja.Phase",
+    "pk": 3,
+    "fields": {
+      "description": "Alarm",
+      "phase_id" :  3
+    }
+  },
+   {
+    "model": "Karamoja.Phase",
+    "pk": 4,
+    "fields": {
+      "description": "Emergency",
+      "phase_id" :  4
+    }
+  },
+   {
+    "model": "Karamoja.Phase",
+    "pk": 5,
+    "fields": {
+      "description": "Not specified",
+      "phase_id" :  0
+    }
+  },
+  {
+    "model": "Karamoja.LivelihoodZones",
+    "pk": 1,
+    "fields": {
+      "description": "Pastoral"
+    }
+  },
+  {
+    "model": "Karamoja.LivelihoodZones",
+    "pk": 2,
+    "fields": {
+      "description": "Agro-Pastoral"
+    }
+  },
+  {
+    "model": "Karamoja.LivelihoodZones",
+    "pk": 3,
+    "fields": {
+      "description": "Agricultural"
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 1,
+    "fields": {
+      "description": "Price Of Bull",
+      "sector": 4,
+      "indicator_id":  6
+    }
+  },
+   {
+    "model": "Karamoja.Indicators",
+    "pk": 2,
+    "fields": {
+      "description": "Price Of Sorghum",
+      "sector": 4,
+      "indicator_id":  7
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 3,
+    "fields": {
+      "description": "Terms Of Trade (Bull To Sorghum)",
+      "sector": 4,
+      "indicator_id":  11
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 4,
+    "fields": {
+      "description": "Terms Of Trade (Charcoal To Sorghum)",
+      "sector": 4,
+      "indicator_id":  12
+    }
+  },
+   {
+    "model": "Karamoja.Indicators",
+    "pk": 5,
+    "fields": {
+      "description": "Terms Of Trade (Labor To Sorghum)",
+      "sector": 4,
+      "indicator_id":  13
+    }
+  },
+   {
+    "model": "Karamoja.Indicators",
+    "pk": 6,
+    "fields": {
+      "description": "Body Condition: Good",
+      "sector": 1,
+      "indicator_id":  18
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 7,
+    "fields": {
+      "description": "Disease Incidence",
+      "sector": 1,
+      "indicator_id":  20
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 8,
+    "fields": {
+      "description": "Livestock Migration",
+      "sector": 1,
+      "indicator_id":  22
+    }
+  },
+   {
+    "model": "Karamoja.Indicators",
+    "pk": 9,
+    "fields": {
+      "description": "In Market: Bulls",
+      "sector": 1,
+      "indicator_id":  25
+    }
+  },
+    {
+    "model": "Karamoja.Indicators",
+    "pk": 10,
+    "fields": {
+      "description": "Beans Planted By Households",
+      "sector": 2,
+      "indicator_id":  28
+    }
+  },
+    {
+    "model": "Karamoja.Indicators",
+    "pk": 11,
+    "fields": {
+      "description": "Bull Rush-Millet Planted",
+      "sector": 2,
+      "indicator_id":  29
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 12,
+    "fields": {
+      "description": "Bullrush Planted",
+      "sector": 2,
+      "indicator_id":  30
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 13,
+    "fields": {
+      "description": "Groundnuts Planted By Household",
+      "sector": 2,
+      "indicator_id":  31
+    }
+  },
+    {
+    "model": "Karamoja.Indicators",
+    "pk": 14,
+    "fields": {
+      "description": "Maize Planted By Households",
+      "sector": 2,
+      "indicator_id":  32
+    }
+  },
+   {
+    "model": "Karamoja.Indicators",
+    "pk": 15,
+    "fields": {
+      "description": "Sorghum-Maize Planted",
+      "sector": 2,
+      "indicator_id":  33
+    }
+  },
+   {
+    "model": "Karamoja.Indicators",
+    "pk": 16,
+    "fields": {
+      "description": "Beans Yield",
+      "sector": 2,
+      "indicator_id":  34
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 17,
+    "fields": {
+      "description": "Groundnuts Yield",
+      "sector": 2,
+      "indicator_id":  35
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 18,
+    "fields": {
+      "description": "Maize Yield",
+      "sector": 2,
+      "indicator_id":  36
+    }
+  },
+    {
+    "model": "Karamoja.Indicators",
+    "pk": 19,
+    "fields": {
+      "description": "Millet Yield",
+      "sector": 2,
+      "indicator_id":  37
+    }
+  },
+     {
+    "model": "Karamoja.Indicators",
+    "pk": 20,
+    "fields": {
+      "description": "Sorghum Yield",
+      "sector": 4,
+      "indicator_id":  38
+    }
+  },
+   {
+    "model": "Karamoja.Indicators",
+    "pk": 21,
+    "fields": {
+      "description": "Bullrush Yield",
+      "sector": 2,
+      "indicator_id":  39
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 22,
+    "fields": {
+      "description": "Plant Color: Deep Green",
+      "sector": 2,
+      "indicator_id":  40
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 23,
+    "fields": {
+      "description": "Plant Color: Light Green",
+      "sector": 2,
+      "indicator_id":  41
+    }
+  },
+   {
+    "model": "Karamoja.Indicators",
+    "pk": 24,
+    "fields": {
+      "description": "Plant Color: Yellow",
+      "sector": 2,
+      "indicator_id":  42
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 25,
+    "fields": {
+      "description": "Plant Color: Brown",
+      "sector": 2,
+      "indicator_id":  43
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 26,
+    "fields": {
+      "description": "Pests And Diseases",
+      "sector": 2,
+      "indicator_id":  44
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 27,
+    "fields": {
+      "description": "Time To Fetch Water",
+      "sector": 3,
+      "indicator_id":  45
+    }
+  },
+  {
+    "model": "Karamoja.Indicators",
+    "pk": 28,
+    "fields": {
+      "description": "Water Fetched Daily",
+      "sector": 3,
+      "indicator_id":  46
+    }
+  },
+    {
+    "model": "Karamoja.Indicators",
+    "pk": 29,
+    "fields": {
+      "description": "Borehole Usage",
+      "sector": 3,
+      "indicator_id":  47
+    }
+  },
+   {
+    "model": "Karamoja.Indicators",
+    "pk": 30,
+    "fields": {
+      "description": "Bull Price",
+      "sector": 4,
+      "indicator_id":  48
+    }
+  },
+   {
+    "model": "Karamoja.Indicators",
+    "pk": 31,
+    "fields": {
+      "description": "Price Of Charcoal",
+      "sector": 4,
+      "indicator_id":  50
+    }
+  },
+    {
+    "model": "Karamoja.Indicators",
+    "pk": 32,
+    "fields": {
+      "description": "Price Of Firewood",
+      "sector": 4,
+      "indicator_id":  51
+    }
+  },
+    {
+    "model": "Karamoja.Indicators",
+    "pk": 33,
+    "fields": {
+      "description": "Sorghum Price",
+      "sector": 4,
+      "indicator_id":  52
+    }
+  },
+    {
+    "model": "Karamoja.Indicators",
+    "pk": 34,
+    "fields": {
+      "description": "Access To Grazing",
+      "sector": 1,
+      "indicator_id":  53
+    }
+  },
+    {
+    "model": "Karamoja.Indicators",
+    "pk": 35,
+    "fields": {
+      "description": "GAM",
+      "sector": 4,
+      "indicator_id":  54
+    }
+  },
+   {
+    "model": "Karamoja.Indicators",
+    "pk": 36,
+    "fields": {
+      "description": "Casual Labor Rate",
+      "sector": 4,
+      "indicator_id":  55
+    }
+  },
+   {
+    "model": "Karamoja.Indicators",
+    "pk": 37,
+    "fields": {
+      "description": "Germination Of Crops",
+      "sector": 2,
+      "indicator_id":  56
+    }
+  },
+     {
+    "model": "Karamoja.Indicators",
+    "pk": 38,
+    "fields": {
+      "description": "In Market: Heifers",
+      "sector": 1,
+      "indicator_id":  57
+    }
+  },
+     {
+    "model": "Karamoja.Indicators",
+    "pk": 39,
+    "fields": {
+      "description": "Freedom Of Movement: Night",
+      "sector": 4,
+      "indicator_id":  58
+    }
+  },
+  {
+    "model": "Karamoja.Years",
+    "pk": 1,
+    "fields": {
+      "yearly": 2012
+    }
+  },
+    {
+    "model": "Karamoja.Years",
+    "pk": 2,
+    "fields": {
+      "yearly": 2013
+    }
+  },
+  {
+    "model": "Karamoja.Months",
+    "pk": 1,
+    "fields": {
+      "monthly": "January"
+    }
+  },
+  {
+    "model": "Karamoja.Months",
+    "pk": 2,
+    "fields": {
+      "monthly": "February"
+    }
+  },
+  {
+    "model": "Karamoja.Months",
+    "pk": 3,
+    "fields": {
+      "monthly": "March"
+    }
+  },
+  {
+    "model": "Karamoja.Months",
+    "pk": 4,
+    "fields": {
+      "monthly": "April"
+    }
+  },
+  {
+    "model": "Karamoja.Months",
+    "pk": 5,
+    "fields": {
+      "monthly": "May"
+    }
+  },
+  {
+    "model": "Karamoja.Months",
+    "pk": 6,
+    "fields": {
+      "monthly": "June"
+    }
+  },
+  {
+    "model": "Karamoja.Months",
+    "pk": 7,
+    "fields": {
+      "monthly": "July"
+    }
+  },
+  {
+    "model": "Karamoja.Months",
+    "pk": 8,
+    "fields": {
+      "monthly": "August"
+    }
+  },
+  {
+    "model": "Karamoja.Months",
+    "pk": 9,
+    "fields": {
+      "monthly": "September"
+    }
+  },
+  {
+    "model": "Karamoja.Months",
+    "pk": 10,
+    "fields": {
+      "monthly": "October"
+    }
+  },
+  {
+    "model": "Karamoja.Months",
+    "pk": 11,
+    "fields": {
+      "monthly": "November"
+    }
+  },
+  {
+    "model": "Karamoja.Months",
+    "pk": 12,
+    "fields": {
+      "monthly": "December"
+    }
+  }
+]

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/static/images/uganda-flag.ico" type="image/x-icon" />
+    <meta charset="utf-8">
+    <title>{% block title %}Dews Web{% endblock %}</title>
+     {% load bootstrap3 %}
+     {% bootstrap_css %}
+     {% bootstrap_messages %}
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-46134084-1', 'cloudapp.net');
+  ga('send', 'pageview');
+</script>
+    <style type="text/css">
+    .jumbotron{
+       background: url("/static/images/banner.jpg") top center no-repeat transparent;
+       background-size: cover;
+       color: #FFFFFF;
+               }
+
+     .jumbotron h2{
+       color: #FFFFFF;
+       text-shadow: 0px 0px 15px #CCCCCC;
+       text-align: center
+                 }
+
+    footer{
+       border-top: 1px dashed #CCCCCC;
+       margin: 40px 0px;
+       padding: 20px 0px;
+           }
+
+    table { 
+        float:left;
+        width:148px;
+        margin-left:50px;
+          }
+    #table_container{width:300px;margin: auto;}
+      </style>
+</head>
+
+<body>
+    
+        {% block topbar%}
+        <nav class="navbar-wrapper navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DEWS Web</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+              <li><a href="/home/"><span class="glyphicon glyphicon-globe"></span> Map</a></li>
+              <li><a href="/reports/"><span class="glyphicon glyphicon-cloud-download"></span> Reports</a></li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div><!-- /.navbar-collapse -->
+        </div>
+        </nav>
+
+      
+        {% endblock %}
+        {% block banner %}  
+        <div class="container-fluid">
+        <div class="jumbotron">
+            <h2>Karamoja Drought Early Warning System</h2>
+        </div>
+        </div>
+        {% endblock %}
+       
+
+        {% block content %}
+        {% endblock %}
+        {% block footer %}
+        <footer>
+          <div class="container">
+          <div class="row">
+            <div class="col-md-4"><a href="/admin/" class="btn btn-info">Admin</a></div>
+          </div>
+          </div>
+        </footer>
+        {% endblock %}
+</body>
+</html>

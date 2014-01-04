@@ -1,0 +1,17 @@
+{% extends "Karamoja/base.html" %}
+{% block content %}
+            <div align="center">
+               {% if years_list %}
+           
+              {% for year in years_list %}
+             <a href="{{ year.id}}/">{{ year.yearly }}</a><br>
+              {% endfor %}
+          
+           {% else %}
+               <p>No Years available.</p>
+          {% endif %}
+        </div>
+{% endblock %}
+
+
+

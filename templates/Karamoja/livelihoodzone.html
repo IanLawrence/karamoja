@@ -1,0 +1,12 @@
+{% extends "Karamoja/base.html" %}
+{% block content %}
+            <div align="center">
+{% if livelihood_list %}
+    {% for livelihood in livelihood_list %}
+        <a href="{{ livelihood.id}}/">{{ livelihood.description }}</a><br>
+    {% endfor %}
+{% else %}
+    <p>No Livelihood Zones available.</p>
+{% endif %}
+</div>
+{% endblock %}

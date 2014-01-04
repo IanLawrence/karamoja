@@ -1,0 +1,191 @@
+{% extends "Karamoja/base.html" %}
+
+{% block content %}
+
+    <div align="center">
+      <h2>DROUGHT BULLETIN {% if where %}{{ where.name }}{% endif %} {% if month %}{{ month.monthly }}{% endif %} {% if year %}{{ year.yearly }}{% endif %}</h2>       
+    </div>
+
+<div>
+ <div style="float: left; width: 300px; margin-left:10px;">{% if imagemap %}<img src="{{imagemap.image.url}}">{% else %}No Map available{% endif %}</div>
+ <div style="float: left;">
+ 	
+
+ {% if pastoral  %}
+     {% for zone in pastoral   %}
+      
+      <table>
+
+      <tr>
+       <td align="center"> <b>{{ zone.livelihoodzones.description }}</b>
+       </td>
+      </tr>
+      <tr>
+        <td>
+           
+            {% if zone.phase.description == "Normal" %}
+              <img src="/static/images/normal.jpg">
+              {% endif %}
+            {% if zone.phase.description  == "Alert" %}
+              <img src="/static/images/alert.jpg">
+              {% endif %}
+            {% if zone.phase.description == "Alarm" %}
+              <img src="/static/images/alarm.jpg">
+              {% endif %}
+            {% if zone.phase.description == "Emergency" %}
+              <img src="/static/images/emergency.jpg">
+               {% endif %}
+            {% if zone.phase.description == "Not specified" %}
+              No phase specified
+              <b>No phase specified</b>
+               {% endif %}  
+        </td> 
+       </tr>
+       <tr>
+           <td align = "middle">
+           <b>{{ zone.phase.description }}</b>
+           </td>
+        </tr>
+        <tr>
+           <td align = "middle">
+           Trend: <b>{{ zone.trends.description }}</b>
+           </td>
+        </tr> 
+      </table>
+
+     {% endfor %}
+    {% else %}
+    <table>
+    <tr>
+      <td>No Pastoral Zone available.</td>
+    </tr>
+    </table>
+  
+    {% endif %} 
+
+{% if agropastoral  %}
+     {% for zone in agropastoral   %}
+      
+      <table>
+
+      <tr>
+       <td align="center"> <b>{{ zone.livelihoodzones.description }}</b>
+       </td>
+      </tr>
+      <tr>
+        <td>
+           
+            {% if zone.phase.description == "Normal" %}
+              <img src="/static/images/normal.jpg">
+              {% endif %}
+            {% if zone.phase.description  == "Alert" %}
+              <img src="/static/images/alert.jpg">
+              {% endif %}
+            {% if zone.phase.description == "Alarm" %}
+              <img src="/static/images/alarm.jpg">
+              {% endif %}
+            {% if zone.phase.description == "Emergency" %}
+              <img src="/static/images/emergency.jpg">
+               {% endif %}
+            {% if zone.phase.description == "Not specified" %}
+              No phase specified
+              <b>No phase specified</b>
+               {% endif %}  
+        </td> 
+       </tr>
+       <tr>
+           <td align = "middle">
+           <b>{{ zone.phase.description }}</b>
+           </td>
+        </tr>
+        <tr>
+           <td align = "middle">
+           Trend: <b>{{ zone.trends.description }}</b>
+           </td>
+        </tr> 
+      </table>
+
+     {% endfor %}
+    {% else %}
+    <table>
+    <tr>
+      <td>No Agro pastoral zone available.</td>
+    </tr>
+    </table>
+  
+    {% endif %} 
+
+    {% if agricultural  %}
+     {% for zone in agricultural %}
+      
+      <table>
+
+      <tr>
+       <td align="center"> <b>{{ zone.livelihoodzones.description }}</b>
+       </td>
+      </tr>
+      <tr>
+        <td>
+           
+            {% if zone.phase.description == "Normal" %}
+              <img src="/static/images/normal.jpg">
+              {% endif %}
+            {% if zone.phase.description  == "Alert" %}
+              <img src="/static/images/alert.jpg">
+              {% endif %}
+            {% if zone.phase.description == "Alarm" %}
+              <img src="/static/images/alarm.jpg">
+              {% endif %}
+            {% if zone.phase.description == "Emergency" %}
+              <img src="/static/images/emergency.jpg">
+               {% endif %}
+            {% if zone.phase.description == "Not specified" %}
+              No phase specified
+              <b>No phase specified</b>
+               {% endif %}  
+        </td> 
+       </tr>
+       <tr>
+           <td align = "middle">
+           <b>{{ zone.phase.description }}</b>
+           </td>
+        </tr>
+        <tr>
+           <td align = "middle">
+           Trend: <b>{{ zone.trends.description }}</b>
+           </td>
+        </tr> 
+      </table>
+
+     {% endfor %}
+    {% else %}
+    <table>
+    <tr>
+      <td>No Agricultural Zone available.</td>
+    </tr>
+    </table>
+  
+    {% endif %} 
+
+
+
+ </div>
+
+ <br style="clear: left;" />
+</div>
+
+  
+  
+ <div align="middle">
+      <br> <a href="/home">Back to map</a><br>   
+ </div>
+              
+{% endblock %}
+
+
+ 
+
+
+
+
+
