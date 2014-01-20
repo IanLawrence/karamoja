@@ -1,27 +1,30 @@
 {% extends "Karamoja/base.html" %}
 
 {% block content %}
+ <div style="clear: both;"></div>
+ <div id="container">
 
-    <div align="center">
+    <div id="textHeader" align="center">
       <h2>DROUGHT BULLETIN {% if where %}{{ where.name }}{% endif %} {% if month %}{{ month.monthly }}{% endif %} {% if year %}{{ year.yearly }}{% endif %}</h2>       
     </div>
 
-<div>
- <div style="float: left; width: 300px; margin-left:10px;">{% if imagemap %}<img src="{{imagemap.image.url}}">{% else %}No Map available{% endif %}</div>
- <div style="float: left;">
+
+ <div>{% if imagemap %}<img src="{{imagemap.image.url}}"  style="height:auto; width: 40%; max-width:480px; max-height:544px;"/>{% else %}No Map available{% endif %}
+
+
+ <div id="outPopUp">
  	
 
  {% if pastoral  %}
      {% for zone in pastoral   %}
-      
-      <table>
+      <table id="inPopUp" >
 
       <tr>
        <td align="center"> <b>{{ zone.livelihoodzones.description }}</b>
        </td>
       </tr>
       <tr>
-        <td>
+        <td align="center">
            
             {% if zone.phase.description == "Normal" %}
               <img src="/static/images/normal.jpg">
@@ -42,17 +45,120 @@
         </td> 
        </tr>
        <tr>
-           <td align = "middle">
+           <td align="center">
            <b>{{ zone.phase.description }}</b>
            </td>
         </tr>
         <tr>
-           <td align = "middle">
+           <td align="center">
            Trend: <b>{{ zone.trends.description }}</b>
            </td>
         </tr> 
-      </table>
+        <tr>
+        <td>
+        <TABLE id="floatLeft">
+        <tr>
+          <td align = "middle"><b>SECTORS</b></td>
+        </tr>
+        <TR>
+        <TD>
+        <table id="innerStats" border="1">
+  
+  <tr>
+    <td>Livestock</td>
+    <td><b>{{zone.livestock_sector_phase.description}}</b></td>
+  </tr>
+  <tr>
+    <td>Crops</td>
+    <td><b>{{zone.crops_sector_phase.description}}</b></td>
+  </tr>
+  <tr>
+    <td>Water</td>
+    <td><b>{{zone.water_sector_phase.description}}</b></td>
+  </tr>
+  <tr>
+    <td>Livelihoods</td>
+    <td><b>{{zone.livelihoods_sector_phase.description}}</b></td>
+  </tr>
+   <tr>
+    <td>Access to Pasture</td>
+    <td><b>{{zone.access_to_pasture}}%</b></td>
+  </tr>
+  <tr>
+    <td>Animals in good body condition</td>
+    <td><b>{{zone.animals_in_good_body_condition }}%</b></td>
+  </tr>
+  <tr>
+    <td>Disease Incidence in Livestock</td>
+    <td><b>{{zone.disease_incidence_in_livestock}}%</b></td>
+  </tr>
+  <tr>
+    <td>Livestock migration</td>
+    <td><b>{{zone.livestock_migration}}%</b></td>
+  </tr>
+  <tr>
+    <td>Germination of crops </td>
+    <td><b>{{zone.germination_of_crops}}%</b></td>
+  </tr>
+  <tr>
+    <td>Crops affected by Pests and diseases</td>
+    <td><b>{{zone.crops_affected_by_pests_and_diseases}}%</b></td>
+  </tr>
+  <tr>
+    <td>Borehole Useage</td>
+    <td><b>{{zone.borehole_useage}}%</b></td>
+  </tr>
+  <tr>
+    <td>Average Time to fetch water</td>
+    <td><b>{{zone.average_time_to_fetch_water}} Hrs</b></td>
+  </tr>
+    <tr>
+    <td>Average Water Qty fetched daily </td>
+    <td><b>{{zone.average_water_qty_fetched_daily}} Ltrs</b></td>
+  </tr>
+  <tr>
+    <td>Price of Bull</td>
+    <td><b>{{zone.price_of_bull}} UGX</b></td>
+  </tr>
+  <tr>
+    <td>Price of Sorghum</td>
+    <td><b>{{zone.price_of_sorghum}} UGX</b></td>
+  </tr>
+  <tr>
+    <td>Price of Charcoal</td>
+    <td><b>{{zone.price_of_charcoal}} UGX</b></td>
+  </tr>
+   <tr>
+    <td>Price of Firewood</td>
+    <td><b>{{zone.price_of_firewood}} UGX</b></td>
+  </tr>
+  <tr>
+    <td>Freedom of movement (Daytime)</td>
+    <td><b>{{zone.freedom_of_movement_daytime}}%</b></td>
+  </tr>
+  <tr>
+    <td>Freedom of movement (Nightime)</td>
+    <td><b>{{zone.freedom_of_movement_nightime}}%</b></td>
+  </tr>
+  <tr>
+    <td>Casual Labor Rate</td>
+    <td><b>{{zone.casual_labor_rate}} UGX</b></td>
+  </tr>
+  <tr>
+    <td>GAM</td>
+    <td><b>{{zone.gam_rate}}%</b></td>
+  </tr>
+</table>
+</td>
+</tr>
 
+      </table>
+</TD>
+</TR>
+</TABLE>
+</td>
+</tr>
+</table>
      {% endfor %}
     {% else %}
     <table>
@@ -60,34 +166,36 @@
       <td>No Pastoral Zone available.</td>
     </tr>
     </table>
+
+     
   
     {% endif %} 
 
 {% if agropastoral  %}
-     {% for zone in agropastoral   %}
+     {% for agrozone in agropastoral   %}
       
-      <table>
+      <table id="inPopUp1">
 
       <tr>
-       <td align="center"> <b>{{ zone.livelihoodzones.description }}</b>
+       <td align="center"> <b>{{ agrozone.livelihoodzones.description }}</b>
        </td>
       </tr>
       <tr>
-        <td>
+        <td align="middle">
            
-            {% if zone.phase.description == "Normal" %}
+            {% if agrozone.phase.description == "Normal" %}
               <img src="/static/images/normal.jpg">
               {% endif %}
-            {% if zone.phase.description  == "Alert" %}
+            {% if agrozone.phase.description  == "Alert" %}
               <img src="/static/images/alert.jpg">
               {% endif %}
-            {% if zone.phase.description == "Alarm" %}
+            {% if agrozone.phase.description == "Alarm" %}
               <img src="/static/images/alarm.jpg">
               {% endif %}
-            {% if zone.phase.description == "Emergency" %}
+            {% if agrozone.phase.description == "Emergency" %}
               <img src="/static/images/emergency.jpg">
                {% endif %}
-            {% if zone.phase.description == "Not specified" %}
+            {% if agrozone.phase.description == "Not specified" %}
               No phase specified
               <b>No phase specified</b>
                {% endif %}  
@@ -95,14 +203,114 @@
        </tr>
        <tr>
            <td align = "middle">
-           <b>{{ zone.phase.description }}</b>
+           <b>{{ agrozone.phase.description }}</b>
            </td>
         </tr>
         <tr>
            <td align = "middle">
-           Trend: <b>{{ zone.trends.description }}</b>
+           Trend: <b>{{ agrozone.trends.description }}</b>
            </td>
         </tr> 
+         <tr>
+        <td align = "left">
+        <TABLE id="floatLeft">
+        <tr>
+          <td align = "middle"><b>SECTORS</b></td>
+        </tr>
+        <TR>
+        <TD>
+        <table id="innerStats" border="1">
+  
+  <tr>
+    <td>Livestock</td>
+    <td><b>{{agrozone.livestock_sector_phase.description}}</b></td>
+  </tr>
+  <tr>
+    <td>Crops</td>
+    <td><b>{{agrozone.crops_sector_phase.description}}</b></td>
+  </tr>
+  <tr>
+    <td>Water</td>
+    <td><b>{{agrozone.water_sector_phase.description}}</b></td>
+  </tr>
+  <tr>
+    <td>Livelihoods</td>
+    <td><b>{{agrozone.livelihoods_sector_phase.description}}</b></td>
+  </tr>
+   <tr>
+    <td>Access to Pasture</td>
+    <td><b>{{agrozone.access_to_pasture}}%</b></td>
+  </tr>
+  <tr>
+    <td>Animals in good body condition</td>
+    <td><b>{{agrozone.animals_in_good_body_condition }}%</b></td>
+  </tr>
+  <tr>
+    <td>Disease Incidence in Livestock</td>
+    <td><b>{{agrozone.disease_incidence_in_livestock}}%</b></td>
+  </tr>
+  <tr>
+    <td>Livestock migration</td>
+    <td><b>{{agrozone.livestock_migration}}%</b></td>
+  </tr>
+  <tr>
+    <td>Germination of crops </td>
+    <td><b>{{agrozone.germination_of_crops}}%</b></td>
+  </tr>
+  <tr>
+    <td>Crops affected by Pests and diseases</td>
+    <td><b>{{agrozone.crops_affected_by_pests_and_diseases}}%</b></td>
+  </tr>
+  <tr>
+    <td>Borehole Useage</td>
+    <td><b>{{agrozone.borehole_useage}}%</b></td>
+  </tr>
+  <tr>
+    <td>Average Time to fetch water</td>
+    <td><b>{{agrozone.average_time_to_fetch_water}} Hrs</b></td>
+  </tr>
+    <tr>
+    <td>Average Water Qty fetched daily </td>
+    <td><b>{{agrozone.average_water_qty_fetched_daily}} Ltrs</b></td>
+  </tr>
+  <tr>
+    <td>Price of Bull</td>
+    <td><b>{{agrozone.price_of_bull}} UGX</b></td>
+  </tr>
+  <tr>
+    <td>Price of Sorghum</td>
+    <td><b>{{agrozone.price_of_sorghum}} UGX</b></td>
+  </tr>
+  <tr>
+    <td>Price of Charcoal</td>
+    <td><b>{{agrozone.price_of_charcoal}} UGX</b></td>
+  </tr>
+   <tr>
+    <td>Price of Firewood</td>
+    <td><b>{{agrozone.price_of_firewood}} UGX</b></td>
+  </tr>
+  <tr>
+    <td>Freedom of movement (Daytime)</td>
+    <td><b>{{agrozone.freedom_of_movement_daytime}}%</b></td>
+  </tr>
+  <tr>
+    <td>Freedom of movement (Nightime)</td>
+    <td><b>{{agrozone.freedom_of_movement_nightime}}%</b></td>
+  </tr>
+  <tr>
+    <td>Casual Labor Rate</td>
+    <td><b>{{agrozone.casual_labor_rate}} UGX</b></td>
+  </tr>
+  <tr>
+    <td>GAM</td>
+    <td><b>{{agrozone.gam_rate}}%</b></td>
+  </tr>
+</table>
+</TD>
+</TR>
+</TABLE>
+</td>
+</tr>
       </table>
 
      {% endfor %}
@@ -118,14 +326,14 @@
     {% if agricultural  %}
      {% for zone in agricultural %}
       
-      <table>
+      <table id="inPopUp2">
 
       <tr>
        <td align="center"> <b>{{ zone.livelihoodzones.description }}</b>
        </td>
       </tr>
       <tr>
-        <td>
+        <td align="middle">
            
             {% if zone.phase.description == "Normal" %}
               <img src="/static/images/normal.jpg">
@@ -155,7 +363,111 @@
            Trend: <b>{{ zone.trends.description }}</b>
            </td>
         </tr> 
+         <tr>
+        <td align = "left">
+        <TABLE id="floatLeft">
+        <tr>
+          <td align = "middle"><b>SECTORS</b></td>
+        </tr>
+        <TR>
+        <TD>
+        <table id="innerStats" border="1">
+  
+  <tr>
+    <td>Livestock</td>
+    <td><b>{{zone.livestock_sector_phase.description}}</b></td>
+  </tr>
+  <tr>
+    <td>Crops</td>
+    <td><b>{{zone.crops_sector_phase.description}}</b></td>
+  </tr>
+  <tr>
+    <td>Water</td>
+    <td><b>{{zone.water_sector_phase.description}}</b></td>
+  </tr>
+  <tr>
+    <td>Livelihoods</td>
+    <td><b>{{zone.livelihoods_sector_phase.description}}</b></td>
+  </tr>
+   <tr>
+    <td>Access to Pasture</td>
+    <td><b>{{zone.access_to_pasture}}%</b></td>
+  </tr>
+  <tr>
+    <td>Animals in good body condition</td>
+    <td><b>{{zone.animals_in_good_body_condition }}%</b></td>
+  </tr>
+  <tr>
+    <td>Disease Incidence in Livestock</td>
+    <td><b>{{zone.disease_incidence_in_livestock}}%</b></td>
+  </tr>
+  <tr>
+    <td>Livestock migration</td>
+    <td><b>{{zone.livestock_migration}}%</b></td>
+  </tr>
+  <tr>
+    <td>Germination of crops </td>
+    <td><b>{{zone.germination_of_crops}}%</b></td>
+  </tr>
+  <tr>
+    <td>Crops affected by Pests and diseases</td>
+    <td><b>{{zone.crops_affected_by_pests_and_diseases}}%</b></td>
+  </tr>
+  <tr>
+    <td>Borehole Useage</td>
+    <td><b>{{zone.borehole_useage}}%</b></td>
+  </tr>
+  <tr>
+    <td>Average Time to fetch water</td>
+    <td><b>{{zone.average_time_to_fetch_water}} Hrs</b></td>
+  </tr>
+    <tr>
+    <td>Average Water Qty fetched daily </td>
+    <td><b>{{zone.average_water_qty_fetched_daily}} Ltrs</b></td>
+  </tr>
+  <tr>
+    <td>Price of Bull</td>
+    <td><b>{{zone.price_of_bull}} UGX</b></td>
+  </tr>
+  <tr>
+    <td>Price of Sorghum</td>
+    <td><b>{{zone.price_of_sorghum}} UGX</b></td>
+  </tr>
+  <tr>
+    <td>Price of Charcoal</td>
+    <td><b>{{zone.price_of_charcoal}} UGX</b></td>
+  </tr>
+   <tr>
+    <td>Price of Firewood</td>
+    <td><b>{{zone.price_of_firewood}} UGX</b></td>
+  </tr>
+  <tr>
+    <td>Freedom of movement (Daytime)</td>
+    <td><b>{{zone.freedom_of_movement_daytime}}%</b></td>
+  </tr>
+  <tr>
+    <td>Freedom of movement (Nightime)</td>
+    <td><b>{{zone.freedom_of_movement_nightime}}%</b></td>
+  </tr>
+  <tr>
+    <td>Casual Labor Rate</td>
+    <td><b>{{zone.casual_labor_rate}} UGX</b></td>
+  </tr>
+  <tr>
+    <td>GAM</td>
+    <td><b>{{zone.gam_rate}}%</b></td>
+  </tr>
+</table>
+</td>
+</tr>
+
       </table>
+</TD>
+</TR>
+</TABLE>
+</td>
+</tr>
+       </table>
 
      {% endfor %}
     {% else %}
@@ -170,16 +482,16 @@
 
 
  </div>
+     </div>
+</div> 
+<div style="clear: both;"><br><br><br><br><br><br></div>
+<div id="Report">
+      <br><br> Get the full report:<a href="{{report.pdf.url}}"> {{ report.description}}</a>
+ </div> 
 
- <br style="clear: left;" />
-</div>
-
-  
-  
- <div align="middle">
-      <br> <a href="/home">Back to map</a><br>   
- </div>
-              
+ <div id="Back">
+      <br><br><a href="/home/">Back to the Karamoja Map </a><br><br>   
+ </div>       
 {% endblock %}
 
 

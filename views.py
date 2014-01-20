@@ -13,7 +13,7 @@ from django.core import serializers
 from Karamoja.models import LivelihoodZonePhaseClassification, Districts, Years, Months, LivelihoodZones, Trends, Report, Map
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
-from django.db.models import Max
+from django.core.exceptions import MultipleObjectsReturned
 
 
 def jsonit(request):
@@ -47,8 +47,17 @@ def analysis(request, district_id, id, livelihoodzone):
         where = None
     try:
         imagemap = Map.objects.get(district = where.id, year = id, month = livelihoodzone)
+    except MultipleObjectsReturned:
+        imagemap = Map.objects.filter(district = where.id, year = id, month = livelihoodzone)[0]
     except Map.DoesNotExist:
         imagemap = None
+    try:
+        report = Report.objects.get(district = where.id, year = id, month = livelihoodzone)
+    except MultipleObjectsReturned:
+        report = Report.objects.filter(district = where.id, year = id, month = livelihoodzone)[0]
+    except Report.DoesNotExist:
+        report = None
+    print report
     try:
         year = Years.objects.get(id = id)
     except Years.DoesNotExist:
@@ -64,7 +73,7 @@ def analysis(request, district_id, id, livelihoodzone):
         agricultural = LivelihoodZonePhaseClassification.objects.filter(district=district_id, years=id, months=livelihoodzone, livelihoodzones=3).order_by('dews_created').reverse()[:1]
     except LivelihoodZonePhaseClassification.DoesNotExist:
         raise Http404   
-    return render(request, 'Karamoja/report.html', {'pastoral': pastoral, 'agropastoral': agropastoral, 'agricultural': agricultural, 'where': where, 'year': year, 'month': month, 'imagemap' : imagemap })
+    return render(request, 'Karamoja/report.html', {'pastoral': pastoral, 'agropastoral': agropastoral, 'agricultural': agricultural, 'where': where, 'year': year, 'month': month, 'imagemap' : imagemap, 'report' : report})
 
 @csrf_exempt
 def save_livelihood_data(request):

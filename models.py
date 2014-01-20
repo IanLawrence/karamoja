@@ -97,6 +97,9 @@ class Phase(models.Model):
 class Report(models.Model):
     pdf = models.FileField(upload_to="reports")
     description = models.CharField(max_length=300)
+    district = models.ForeignKey(Districts)
+    month = models.ForeignKey(Months)
+    year = models.ForeignKey(Years)
 
     class Admin:
         list_display = ('description')
@@ -141,6 +144,28 @@ class LivelihoodZonePhaseClassification(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     sequenceid = models.BigIntegerField()
     dews_created = models.DateTimeField()
+    livestock_sector_phase = models.ForeignKey(Phase, to_field='phase_id', related_name='livestock_sector_phase')
+    crops_sector_phase = models.ForeignKey(Phase, to_field='phase_id', related_name='crops_sector_phase')
+    water_sector_phase = models.ForeignKey(Phase, to_field='phase_id', related_name='water_sector_phase')
+    livelihoods_sector_phase = models.ForeignKey(Phase, to_field='phase_id', related_name='livelihoods_sector_phase')
+    access_to_pasture = models.FloatField()
+    animals_in_good_body_condition = models.FloatField()
+    disease_incidence_in_livestock = models.FloatField()
+    livestock_migration = models.FloatField()
+    germination_of_crops = models.FloatField()
+    crops_affected_by_pests_and_diseases = models.FloatField()
+    borehole_useage  = models.FloatField()
+    average_time_to_fetch_water = models.FloatField()
+    average_water_qty_fetched_daily = models.FloatField()
+    price_of_bull = models.FloatField()
+    price_of_sorghum = models.FloatField()
+    price_of_charcoal = models.FloatField()
+    price_of_firewood = models.FloatField()
+    freedom_of_movement_daytime = models.FloatField()
+    freedom_of_movement_nightime = models.FloatField()
+    casual_labor_rate = models.FloatField()
+    gam_rate = models.FloatField()
+
 
     def get_fields(self):
         return [(field.name, field.value_to_string(self)) for field in LivelihoodZonePhaseClassification._meta.fields]
