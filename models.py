@@ -1,10 +1,10 @@
 from django.db import models
 
+
 class Districts(models.Model):
     district_id = models.IntegerField(unique=True)
     name = models.CharField(max_length=200)
     code = models.CharField(max_length=200)
-
 
     class Meta:
         verbose_name_plural = "Districts"
@@ -134,7 +134,7 @@ class Map(models.Model):
         return self.description   
 
 class LivelihoodZonePhaseClassification(models.Model):
-    district = models.IntegerField()
+    district = models.ForeignKey(Districts, to_field='district_id')
     years = models.ForeignKey(Years)
     months = models.ForeignKey(Months)
     riskofdrought = models.ForeignKey(RiskOfDrought, to_field='risk_of_drought_id')
@@ -167,8 +167,8 @@ class LivelihoodZonePhaseClassification(models.Model):
     gam_rate = models.FloatField()
 
 
-    def get_fields(self):
-        return [(field.name, field.value_to_string(self)) for field in LivelihoodZonePhaseClassification._meta.fields]
+    def __unicode__(self):
+       return unicode(self.created) or u''
 
 
 

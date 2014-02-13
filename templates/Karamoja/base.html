@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="icon" href="/static/images/uganda-flag.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}django_tables2/themes/paleblue/css/screen.css" />
     <meta charset="utf-8">
     <title>{% block title %}Dews Web{% endblock %}</title>
      {% load bootstrap3 %}
@@ -20,12 +21,16 @@
        background: url("/static/images/banner.jpg") top center no-repeat transparent;
        background-size: cover;
        color: #FFFFFF;
+       background-repeat: repeat;
+       margin-bottom: 0px;
+       height: 100px;
                }
 
      .jumbotron h2{
        color: #FFFFFF;
        text-shadow: 0px 0px 15px #CCCCCC;
-       text-align: center
+       text-align: center;
+       margin-top: 0px;
                  }
 
     footer{
@@ -36,6 +41,7 @@
 
     html, body    {
        height: 100%;
+       padding-top: 80px; 
                  }
 
     #container {
@@ -128,6 +134,7 @@
               <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
               <li><a href="/home/"><span class="glyphicon glyphicon-globe"></span> Map</a></li>
               <li><a href="/reports/"><span class="glyphicon glyphicon-cloud-download"></span> Reports</a></li>
+              <li><a href="/comparison/"><span class="glyphicon glyphicon-stats"></span> Comparisons</a></li>
             </ul>
             <form class="navbar-form navbar-right" role="search">
               <div class="form-group">
@@ -137,20 +144,24 @@
             </form>
           </div><!-- /.navbar-collapse -->
         </div>
+         {% block banner %} 
+        
+        <div class="container-fluid">
+        <div class="jumbotron" >
+            <h2>Karamoja Drought Early Warning System</h2>
+        </div>
+        </div>
+       
+        {% endblock %}
         </nav>
 
       
         {% endblock %}
-        {% block banner %}  
-        <div class="container-fluid">
-        <div class="jumbotron">
-            <h2>Karamoja Drought Early Warning System</h2>
-        </div>
-        </div>
-        {% endblock %}
+       
        
 
         {% block content %}
+
         {% endblock %}
         {% block footer %}
         <footer>
@@ -159,6 +170,7 @@
             <div class="col-md-4"><a href="/admin/" class="btn btn-info">Admin</a></div>
           </div>
           </div>
+
         </footer>
         {% endblock %}
 </body>

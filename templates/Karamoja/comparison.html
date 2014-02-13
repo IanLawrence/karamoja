@@ -1,0 +1,86 @@
+{% extends "Karamoja/base.html" %}
+
+
+{% block content %}
+  <body>
+  <div align="center">
+  
+  {% if districts %}
+   <form action='.' method='post' id="compForm" class="form-inline" role="form">{% csrf_token %}
+   <div class="form-group">
+    <label for="district1">Select First District</label>
+        <select name="district1" class="form-control">
+    {% for district in districts %}
+        {% ifequal district.id selected_district.id %}
+            <option value="{{district.district_id}}" selected="selected">{{district.name}}</option>
+        {% else %}
+            <option value="{{district.district_id }}">{{district.name}}</option>
+        {% endifequal %}
+    {% endfor %}
+        </select>
+  </div>
+
+  <div class="form-group">
+  <label for="district2">District to Compare</label>
+        <select name="district2" class="form-control">
+    {% for district in districts %}
+        {% ifequal district.id selected_district.id %}
+            <option value="{{district.district_id}}" selected="selected">{{district.name}}</option>
+        {% else %}
+            <option value="{{district.district_id}}">{{district.name}}</option>
+        {% endifequal %}
+    {% endfor %}
+        </select>
+  </div>
+
+  <div class="form-group">
+  <label for="year">For the year</label>
+        <select name="year" class="form-control">
+    {% for year in years %}
+        {% ifequal year.id selected_year.id %}
+            <option value="{{year.id}}" selected="selected">{{year.yearly}}</option>
+        {% else %}
+            <option value="{{year.id}}">{{year.yearly}}</option>
+        {% endifequal %}
+    {% endfor %}
+        </select>
+  </div>
+
+  <div class="form-group">
+  <label for="month">Month</label>
+        <select name="month" class="form-control">
+    {% for month in months %}
+        {% ifequal month.id selected_month.id %}
+            <option value="{{month.id}}" selected="selected">{{month.monthly}}</option>
+        {% else %}
+            <option value="{{month.id}}">{{month.monthly}}</option>
+        {% endifequal %}
+    {% endfor %}
+        </select>
+  </div>
+
+  <div class="form-group">
+   <label for="zone">Livelihood Zone</label>
+         <select name="zone" class="form-control">
+    {% for zone in livelihoodzone %}
+        {% ifequal zone.id selected_zone.id %}
+            <option value="{{zone.id}}" selected="selected">{{zone.description}}</option>
+        {% else %}
+            <option value="{{zone.id}}">{{zone.description}}</option>
+        {% endifequal %}
+    {% endfor %}
+        </select>
+  </div>
+       <br><br><br>
+       <button type="submit" class="btn btn-default">Go</button>
+
+  </form>
+    
+
+       
+   {% else %}
+        <p>No Districts.</p>
+   {% endif %}
+   </div> 
+  </body>
+ {% endblock %}

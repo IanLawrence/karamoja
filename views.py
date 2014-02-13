@@ -2,7 +2,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, render, get_object_or_404 
 import json
-from django.conf import settings   
+from django.conf import settings  
 from django.http import Http404
 from django.template import Template, Context
 from django.core.context_processors import csrf
@@ -10,10 +10,15 @@ from django.utils import simplejson
 from django.template import RequestContext
 from django.http import HttpResponseServerError, HttpResponseRedirect
 from django.core import serializers
-from Karamoja.models import LivelihoodZonePhaseClassification, Districts, Years, Months, LivelihoodZones, Trends, Report, Map
+from Karamoja.models import LivelihoodZonePhaseClassification, Districts, Years, Months, LivelihoodZones, Trends, Report, Map, Indicators
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import MultipleObjectsReturned
+from django.core.urlresolvers import reverse
+from django import forms
+#tables
+from Karamoja.tables  import LivelihoodZoneTable
+from django_tables2_reports.config import RequestConfigReport as RequestConfig
 
 
 def jsonit(request):
@@ -31,6 +36,44 @@ def home(request):
     district_list = Districts.objects.all().order_by('name')
     context = {'district_list': district_list}
     return render(request, 'Karamoja/home.html', context)
+
+def comparison(request):
+    if request.method == 'GET':
+        districts = Districts.objects.all()
+        years = Years.objects.all()
+        months = Months.objects.all()
+        livelihoodzone = LivelihoodZones.objects.all()
+        return render(request, 'Karamoja/comparison.html', {'districts': districts, 'years': years, 'months': months, 'livelihoodzone': livelihoodzone})
+    else:
+        # A POST request: Handle Form 
+        form = forms.Form(request.POST) # Bind data from request.POST into a Form
+        # If data is valid, proceeds to create a new post and redirect the user
+        if form.is_valid():
+            firstDistrict = request.POST['district1'] 
+            secondDistrict = request.POST['district2'] 
+            year = request.POST['year'] 
+            month = request.POST['month'] 
+            zone = request.POST['zone'] 
+            print firstDistrict, secondDistrict, year, month, zone
+            try:
+                one = LivelihoodZonePhaseClassification.objects.filter(district=firstDistrict, years=year, months=month, livelihoodzones=zone).order_by('dews_created').reverse()[:1]
+                two = LivelihoodZonePhaseClassification.objects.filter(district=secondDistrict, years=year, months=month, livelihoodzones=zone).order_by('dews_created').reverse()[:1]
+            except LivelihoodZonePhaseClassification.DoesNotExist:
+                one = None
+                two = None
+            return HttpResponseRedirect(reverse('comparator',kwargs={'one':one[0].id, 'two':two[0].id})) 
+
+ 
+def comparator(request, one, two): 
+    try:
+        together = LivelihoodZoneTable(LivelihoodZonePhaseClassification.objects.filter(pk__in=[one,two]))
+    except Districts.DoesNotExist:
+        together = None
+
+    RequestConfig(request).configure(together)
+    return render_to_response('Karamoja/comparator.html',
+                              {'together': together},
+                              context_instance=RequestContext(request))   
 
 def years(request, district_id):
     years_list = Years.objects.all()
