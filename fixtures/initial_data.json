@@ -580,6 +580,13 @@
       "yearly": 2013
     }
   },
+   {
+    "model": "Karamoja.Years",
+    "pk": 3,
+    "fields": {
+      "yearly": 2014
+    }
+  },
   {
     "model": "Karamoja.Months",
     "pk": 1,

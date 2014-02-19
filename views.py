@@ -17,7 +17,7 @@ from django.core.exceptions import MultipleObjectsReturned
 from django.core.urlresolvers import reverse
 from django import forms
 #tables
-from Karamoja.tables  import LivelihoodZoneTable
+from Karamoja.tables  import LivelihoodZoneTable, LivelihoodZoneTableAnalysis
 from django_tables2_reports.config import RequestConfigReport as RequestConfig
 
 
@@ -54,7 +54,7 @@ def comparison(request):
             year = request.POST['year'] 
             month = request.POST['month'] 
             zone = request.POST['zone'] 
-            print firstDistrict, secondDistrict, year, month, zone
+
             try:
                 one = LivelihoodZonePhaseClassification.objects.filter(district=firstDistrict, years=year, months=month, livelihoodzones=zone).order_by('dews_created').reverse()[:1]
                 two = LivelihoodZonePhaseClassification.objects.filter(district=secondDistrict, years=year, months=month, livelihoodzones=zone).order_by('dews_created').reverse()[:1]
@@ -67,7 +67,7 @@ def comparison(request):
 def comparator(request, one, two): 
     try:
         together = LivelihoodZoneTable(LivelihoodZonePhaseClassification.objects.filter(pk__in=[one,two]))
-    except Districts.DoesNotExist:
+    except LivelihoodZonePhaseClassification.DoesNotExist:
         together = None
 
     RequestConfig(request).configure(together)
@@ -109,14 +109,26 @@ def analysis(request, district_id, id, livelihoodzone):
         month = Months.objects.get( id = livelihoodzone) 
     except Months.DoesNotExist:
         month = None
-    
+
     try:
         pastoral = LivelihoodZonePhaseClassification.objects.filter(district=district_id, years=id, months=livelihoodzone, livelihoodzones=1).order_by('dews_created').reverse()[:1]
         agropastoral = LivelihoodZonePhaseClassification.objects.filter(district=district_id, years=id, months=livelihoodzone, livelihoodzones=2).order_by('dews_created').reverse()[:1]
         agricultural = LivelihoodZonePhaseClassification.objects.filter(district=district_id, years=id, months=livelihoodzone, livelihoodzones=3).order_by('dews_created').reverse()[:1]
     except LivelihoodZonePhaseClassification.DoesNotExist:
-        raise Http404   
-    return render(request, 'Karamoja/report.html', {'pastoral': pastoral, 'agropastoral': agropastoral, 'agricultural': agricultural, 'where': where, 'year': year, 'month': month, 'imagemap' : imagemap, 'report' : report})
+        raise Http404 
+
+    try:
+        pastoral1 = LivelihoodZoneTableAnalysis(LivelihoodZonePhaseClassification.objects.filter(district=district_id, years=id, months=livelihoodzone, livelihoodzones=1).order_by('dews_created').reverse()[:1])
+        agropastoral1 = LivelihoodZoneTableAnalysis(LivelihoodZonePhaseClassification.objects.filter(district=district_id, years=id, months=livelihoodzone, livelihoodzones=2).order_by('dews_created').reverse()[:1])
+        agricultural1 = LivelihoodZoneTableAnalysis(LivelihoodZonePhaseClassification.objects.filter(district=district_id, years=id, months=livelihoodzone, livelihoodzones=3).order_by('dews_created').reverse()[:1])
+    except LivelihoodZonePhaseClassification.DoesNotExist:
+        raise Http404  
+
+    RequestConfig(request).configure(pastoral1)
+    RequestConfig(request).configure(agropastoral1)
+    RequestConfig(request).configure(agricultural1)
+
+    return render(request, 'Karamoja/report.html', {'pastoral': pastoral, 'agropastoral': agropastoral, 'agricultural': agricultural, 'pastoral1': pastoral1, 'agropastoral1': agropastoral1, 'agricultural1': agricultural1,  'where': where, 'year': year, 'month': month, 'imagemap' : imagemap, 'report' : report}, context_instance=RequestContext(request))
 
 @csrf_exempt
 def save_livelihood_data(request):

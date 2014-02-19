@@ -19,7 +19,7 @@ class Years(models.Model):
         verbose_name_plural = "Years"
 
     def __unicode__(self):
-        return self.yearly
+        return u"%s" % self.yearly
 
 class Months(models.Model):
     monthly = models.CharField(max_length=200)
